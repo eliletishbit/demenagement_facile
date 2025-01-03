@@ -26,6 +26,7 @@ class VehiculeController extends Controller
         $typesv = TypeVehicule::All();
         $user = Auth::user();
         $chauffeur = Chauffeur::where('user_id', $user->id)->first();
+
         
         // return view('pages.back.gestionvehicules', compact('typesv'));
         return view('pages.back.gestionvehicules', compact('typesv','chauffeur'));
@@ -66,7 +67,7 @@ class VehiculeController extends Controller
                 ]);
                 
               
-                return redirect()->route('gestionvehicules')->with('success', 'vehicule ajoutee !');
+                return redirect()->route('gestionvehiculesview')->with('success', 'vehicule ajoutee !');
                
             
         

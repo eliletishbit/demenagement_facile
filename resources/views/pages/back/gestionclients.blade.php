@@ -2,8 +2,28 @@
 
 @section('contenu_gestion_client')
 <!-- partial -->
-<div class="main-panel col-md-12">
     <div class="content-wrapper">
+        <div class="main-panel col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                </div>
+            @endif
+        
+            @if(session()->has('error'))
+                <div class="alert alert-success">
+                    {{session()->get('error')}}
+                </div>
+                @elseif(session()->has('success'))
+                <div class="alert alert-info">
+                    {{session()->get('success')}}
+                </div>
+            @endif
+            
         @if(Auth::check() && Auth::user()->type_user_id == 3) <!-- Vérifie si l'utilisateur est admin -->
             <div class="row">
                 <div class="col-md-12">

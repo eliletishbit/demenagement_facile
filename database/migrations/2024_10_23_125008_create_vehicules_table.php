@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('vehicules', function (Blueprint $table) {
             $table->id();  
-            $table->foreignId('type_vehicule_id')->constrained();//cle etrangere
-            $table->foreignId('chauffeur_id')->constrained();//cle etrangere            
+            $table->foreignId('type_vehicule_id')->constrained()->onDelete('cascade');//cle etrangere
+            $table->foreignId('chauffeur_id')->constrained()->onDelete('cascade');//cle etrangere            
             $table->string('libvehicule'); 
             $table->string('immatr')->unique(); 
             $table->string('imagevehicule'); 
@@ -23,6 +23,8 @@ return new class extends Migration
             $table->timestamps();
 
             //cles etrangeres
+
+            
         });
     }
 

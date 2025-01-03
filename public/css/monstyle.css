@@ -1,0 +1,38 @@
+ /*style pour la suggestion d'autocompletions*/
+
+ .suggestions-container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #f0f0f0; /* Change la couleur au survol */
+  }
+
+  /*style pour le choix du vehicule*/
+
+  .vehicle-item {
+      position: relative;
+  }
+  .vehicle-item.selected img {
+      border: 2px solid #fcba03; /* Indique que le véhicule est sélectionné avec une bordure bleue */
+  }
+  .vehicle-item img {
+      border-radius: 10px; /* Arrondi des bords des images */
+  }
+
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+}
+
+/*FIN    * /

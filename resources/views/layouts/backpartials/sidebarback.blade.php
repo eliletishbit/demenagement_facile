@@ -27,12 +27,12 @@
                   @elseif(Auth::user()->type_user_id == 2) <!-- Chauffeur -->                      
                       <li class="nav-item"><a class="nav-link" href="{{ route('gestionvehiculesview') }}">Véhicules</a></li>
                       <li class="nav-item"><a class="nav-link" href="{{ route('gainschauffeurview') }}">Gains</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{{ route('notifications') }}">Notifications</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{ route('notificationsview') }}">Notifications</a></li>
                   @elseif(Auth::user()->type_user_id == 1) <!-- Client -->
                       <li class="nav-item"><a class="nav-link" href="{{ route('creerdemandeview') }}">Créer Demande</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{{ route('suividemandeview') }}">Suivie Demande</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{ route('suiviedemandeview') }}">Suivie Demande</a></li>
                       <li class="nav-item"><a class="nav-link" href="{{ route('telechargerdevisview') }}">Devis</a></li>
-                      <li class="nav-item"><a class="nav-link" href="{{ route('notifications') }}">Notifications</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{{ route('notificationsview') }}">Notifications</a></li>
                   @endif
                   <!-- Connexion pour tous les utilisateurs non connectés -->
                   @if(!Auth::check())
@@ -43,7 +43,7 @@
       </li>
 
       <!-- Autres éléments du menu -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">UI Elements</span>
@@ -56,6 +56,6 @@
                   <li class="nav-item"><a class="nav-link" href="#">Typography</a></li>
               </ul>
           </div>
-      </li>     
+      </li>      --}}
   </ul>
 </nav> 

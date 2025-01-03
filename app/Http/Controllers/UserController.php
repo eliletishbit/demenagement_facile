@@ -65,14 +65,56 @@ class UserController extends Controller
 
     // Méthode pour supprimer un utilisateur
     public function userdestroy($id)
-    {
-        $user = User::findOrFail($id); // Trouver l'utilisateur par ID
-        $user->delete(); // Supprimer l'utilisateur
+{
+    // Trouver l'utilisateur par ID
+    $user = User::findOrFail($id); 
 
-        return redirect()->route('gestionclients')->with('success', 'Utilisateur supprimé avec succès.');
+    // Supprimer les données dans les tables associées
+    $message = '';
+    $errorMessage = '';
+
+    switch ($user->type_user_id) {
+        case 1: // Client
+            $client = Client::where('user_id', $user->id)->first();
+            if ($client) {
+                $client->delete();
+                $message = 'Client supprimé avec succès.';
+            } else {
+                $errorMessage = 'Impossible de supprimer le client. Correspondance introuvable.';
+            }
+            break;
+
+        case 2: // Chauffeur
+            $chauffeur = Chauffeur::where('user_id', $user->id)->first();
+            if ($chauffeur) {
+                $chauffeur->delete();
+                $message = 'Chauffeur supprimé avec succès.';
+            } else {
+                $errorMessage = 'Impossible de supprimer le chauffeur. Correspondance introuvable.';
+            }
+            break;
+
+        case 3: // Admin
+            $admin = Admin::where('user_id', $user->id)->first();
+            if ($admin) {
+                $admin->delete();
+                $message = 'Admin supprimé avec succès.';
+            } else {
+                $errorMessage = 'Impossible de supprimer cet admin. Correspondance introuvable.';
+            }
+            break;
     }
 
- 
+    // Supprimer l'utilisateur après avoir supprimé les enregistrements associés
+    $user->delete(); 
+
+    // Rediriger avec le message approprié
+    if ($message) {
+        return redirect()->route('gestionclients')->with('success', $message);
+    } else {
+        return redirect()->route('gestionclients')->with('error', $errorMessage);
+    }
+}
    
 
 

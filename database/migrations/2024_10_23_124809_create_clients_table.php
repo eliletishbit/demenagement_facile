@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             
             $table->id();           
-            $table->foreignId('user_id')->constrained();//cle etrangere
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');//cle etrangere
             $table->string('adresse')->nullable();
             $table->timestamps();
 

@@ -112,8 +112,17 @@ public function registeradmin(Request $request)
       // Authentification de l'utilisateur après la création
       Auth::login($user);
 
+      if($user->type_user_id == 3){
+        return redirect()->route('admindashboardview');
+      }elseif($user->type_user_id == 2)
+      {
+        return redirect()->route('chauffeurdashboardview');
+      }elseif($user->type_user_id == 1)
+      {
+        return redirect()->route('clientdashboardview');        
+      }
       // Redirection après l'inscription réussie
-      return redirect()->route('accueil')->with('success', 'Inscription réussie !');
+      //return redirect()->route('accueil')->with('success', 'Inscription réussie !');
 }
 
 

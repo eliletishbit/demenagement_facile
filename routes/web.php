@@ -151,11 +151,13 @@ Route::prefix('client')->middleware(['auth', 'client'])->group( function(){
 
     Route::get('dashboard', [ClientController::class, 'clientdashboardview'])->name('clientdashboardview');
     Route::get('creerdemandeview', [DemandeController::class, 'creerdemandeview'])->name('creerdemandeview');
-    Route::get('suividemande', [DemandeController::class, 'suividemandeview'])->name('suividemandeview');
+    Route::get('suiviedemande', [DemandeController::class, 'suividemandeview'])->name('suiviedemandeview');
     Route::get('telechargerdevis', [ClientController::class, 'telechargerdevisview'])->name('telechargerdevisview');
     //route get de creatrion demande
-    Route::post('creerdemande', [DemandeController::class, 'creerdemande'])->name('creerdemande');
+     Route::post('creerdemande', [DemandeController::class, 'creerdemande'])->name('creerdemande');
     
+    Route::post('/approvedemande', [DemandeController::class, 'approveDemande'])->name('approveDemande');
+    Route::post('/canceldemande', [DemandeController::class, 'cancelDemande'])->name('cancelDemande');
 
 
 });
@@ -177,3 +179,4 @@ Route::prefix('chauffeur')->middleware(['auth', 'chauffeur'])->group( function()
 
 
 
+Route::get('/autocomplete', [DemandeController::class, 'autocomplete'])->name('autocomplete');

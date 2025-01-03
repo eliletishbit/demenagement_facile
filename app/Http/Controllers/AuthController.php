@@ -99,7 +99,7 @@ public function register(Request $request)
     $serviceConnexes = ServiceConnexe::all();
 
     //notifier l'utilisateur
-    $user->notify(new usserRegisteredNotification($user, $serviceConnexes ));
+    //$user->notify(new usserRegisteredNotification($user, $serviceConnexes ));
    
     // Enregistrement spécifique selon le type d'utilisateur (comme précédemment)
     switch ($request->type_user_id) {
@@ -115,14 +115,14 @@ public function register(Request $request)
             // Authentification de l'utilisateur après la création
             Auth::login($user);
              // Redirection après l'inscription réussie
-            return redirect()->route('chauffeurdashboardview')->with('success', 'Inscription réussie !');
+            return redirect()->route('login')->with('success', 'Inscription réussie !');
             break;
         case 3: // Supposons que 3 soit l'ID pour admin
             Admin::create(['user_id' => $user->id]);
             // Authentification de l'utilisateur après la création
             Auth::login($user);
              // Redirection après l'inscription réussie
-            return redirect()->route('admindashboardview')->with('success', 'Inscription réussie !');
+            return redirect()->route('loginadminview')->with('success', 'Inscription réussie !');
             break;
         default:
             return redirect()->back()->withErrors(['error' => "Echec de l'inscription.vueillez reessayer"]);
